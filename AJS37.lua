@@ -487,7 +487,37 @@ end
  
 defineString("AJS37_NAV_INDICATOR_DATA_6", getAJS37NavIndicator6, 1, "Navigation Panel", "Navigataion Panel Data Digit 6")
 
+local function getAJS37DestIndicator1()
+	local li = list_indication(1)
+	local m = li:gmatch("-----------------------------------------\n([^\n]+)\n([^\n]*)\n")
+	while true do
+		local name, value = m()
+        if not name then break end
+		if name == "Dest1"
+			then
+			return value:sub(1)
+		end
+    end
+return ""
+end
+ 
+defineString("AJS37_DEST_INDICATOR_DATA_1", getAJS37DestIndicator1, 1, "Navigation Panel", "Destination Panel Data Digit 1")
 
+local function getAJS37DestIndicator2()
+	local li = list_indication(1)
+	local m = li:gmatch("-----------------------------------------\n([^\n]+)\n([^\n]*)\n")
+	while true do
+		local name, value = m()
+        if not name then break end
+		if name == "Dest2"
+			then
+			return value:sub(1)
+		end
+    end
+return ""
+end
+ 
+defineString("AJS37_DEST_INDICATOR_DATA_2", getAJS37DestIndicator2, 1, "Navigation Panel", "Destination Panel Data Digit 2")
 
 
 BIOS.protocol.endModule()
